@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 343709a97418f4844a134e9165110d89
+guid: 663b9c76280e7440f9d5f8485d567af2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Meteor
+    21300000: moon
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,11 +41,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: Android
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 
