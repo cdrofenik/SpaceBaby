@@ -4,24 +4,14 @@ using System.Collections;
 public class Meteor : MonoBehaviour {
 
 	//Viewport boundingbox
-	private float minX = -7.5f;
-	private float minY = -5.0f;
-	private float maxX = 9.0f;
-	private float maxY = 4.0f;
+	private float minX = -8.7f;
+	private float minY = -4.4f;
+	private float maxX = 8.7f;
+	private float maxY = 4.4f;
 
-	private Vector3 _position = new Vector3 (-9, 6, 0);
-	private Vector3 _velocity = new Vector3 (1, -1, 0);
 	private bool _isCreated = false;
 
-	public float speed = 1.5f;
-
-
-//	public GameObject prefab;
-
-//	void Start() {
-//		Vector3 position = new Vector3(Random.Range(-10.0F, 10.0F), 0, Random.Range(-10.0F, 10.0F));
-//		Instantiate(prefab, position, Quaternion.identity) as GameObject;
-//	}
+	public float speed = 0.2f;
 
 	private bool IsInViewport(Vector3 point)
 	{
@@ -41,48 +31,23 @@ public class Meteor : MonoBehaviour {
 		return meteorTemporaryPosition;
 	}
 
-	void GeneratePosition()
+	void FixedUpdate ()
 	{
-		int sector = Random.Range (0, 3);
-		switch (sector)
-		{
-		case 0:
-			_position = GenerateVectorForRange(0, 0, 11, 7);
-			break;
-		case 1:
-			_position = GenerateVectorForRange(0, 0, 11, -7);
-			break;
-		case 2:
-			_position = GenerateVectorForRange(-11, -7, 0, 0);
-			break;
-		case 3:
-			_position = GenerateVectorForRange(-11, -7, 0, 0);
-			break;
+		if (!_isCreated) {
+			transform.position = new Vector3(11.1f, Random.Range (-3.2f, 3.2f)); //Create random position
+			rigidbody2D.AddForce(new Vector2(-100, 0)); //Add force so the meteor moves
+
+			_isCreated = true; //Now meteor is created
 		}
-	}
 
-	void GenerateVelocity()
-	{
-		var playerObject = GameObject.FindWithTag ("Player");
-		_velocity = playerObject.gameObject.transform.position - _position;
-	}
+		if (_isCreated) {
+		}
+			
 
-	void Update ()
-	{
 		if (Input.GetKey(KeyCode.A))
 		{
-			_isCreated = false;
+			transform.position = new Vector3(11.1f, Random.Range (-3.2f, 3.2f)); //Create random position
 		}
-
-		if (!_isCreated) {
-			GeneratePosition();
-			GenerateVelocity();
-
-			transform.position = _position;	//generate position
-			speed = Random.Range (1.5f, 2.0f);
-			_isCreated = true;
-		}
-		transform.position += _velocity * speed * Time.deltaTime;
 	}
 }
 
