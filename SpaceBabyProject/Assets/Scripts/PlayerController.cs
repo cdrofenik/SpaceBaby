@@ -3,19 +3,25 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKey (KeyCode.UpArrow)) {
-			rigidbody2D.AddForce(new Vector2(0,10));
-		}
+    public float jetpackForce = 15.0f;
 
-		if (Input.GetKey (KeyCode.DownArrow)) {
-			rigidbody2D.AddForce(new Vector2(0,-10));
-		}
-	}
+    bool jetpackActive = false;
+
+    // Use this for initialization
+    void Start () {
+    
+    }
+    
+    // Update is called once per frame
+    void FixedUpdate () {
+        if (Input.GetKey (KeyCode.UpArrow)) {
+            jetpackActive = true;
+        }
+
+        if (jetpackActive)
+        {
+            rigidbody2D.AddForce(new Vector2(0, jetpackForce));
+            jetpackActive = false;
+        }
+    }
 }

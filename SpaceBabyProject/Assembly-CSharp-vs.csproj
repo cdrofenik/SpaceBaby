@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BabyBottle.cs" />
      <Compile Include="Assets\Scripts\Meteor.cs" />
+     <Compile Include="Assets\Scripts\MovableObstacle.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\ShootingStar.cs" />
      <Compile Include="Assets\Scripts\layerissue.cs" />
