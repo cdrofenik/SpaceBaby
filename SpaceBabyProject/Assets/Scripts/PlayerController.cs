@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float jetpackForce = 15.0f;
+    public float jetpackForce = 1.0f;
 
     bool jetpackActive = false;
 
