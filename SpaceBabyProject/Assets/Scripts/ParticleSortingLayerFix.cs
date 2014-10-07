@@ -8,9 +8,8 @@ public class ParticleSortingLayerFix : MonoBehaviour {
 		particleSystem.renderer.sortingLayerName = "Player";
 		particleSystem.renderer.sortingOrder = 1;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
 	}
 }
