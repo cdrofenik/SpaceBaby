@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float jetpackForce = 1.0f;
+    public float jetpackForce = 0.5f;
     public bool jetpackActive = false;
 
     GameObject jetpackSystem;
@@ -11,22 +11,22 @@ public class PlayerController : MonoBehaviour {
     IEnumerator SleepMethod()
     {
         yield return new WaitForSeconds(0.5f);
-        //jetpackSystem.GetComponent<ParticleSystem>().startSize = 0.25f;
-        jetpackSystem.GetComponent<ParticleSystem>().Stop();
+        jetpackSystem.GetComponent<ParticleSystem>().startSize = 0.25f;
+        //jetpackSystem.GetComponent<ParticleSystem>().Stop();
         jetpackActive = false;
     }
 
     // Use this for initialization
     void Start () {
-        jetpackSystem = GameObject.Find("jetpackFlames");
+        jetpackSystem = GameObject.Find("JetpackFlames");
     }
     
     // Update is called once per frame
     void FixedUpdate () {
         if (Input.GetKey (KeyCode.UpArrow)) {
             jetpackActive = true;
-            //jetpackSystem.GetComponent<ParticleSystem>().startSize = 0.5f;
-            jetpackSystem.GetComponent<ParticleSystem>().Play();
+            jetpackSystem.GetComponent<ParticleSystem>().startSize = 0.5f;
+            //jetpackSystem.GetComponent<ParticleSystem>().Play();
         }
 
         if (jetpackActive)
@@ -34,5 +34,6 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.AddForce(new Vector2(0, jetpackForce));
             StartCoroutine(SleepMethod());
         }
+
     }
 }
