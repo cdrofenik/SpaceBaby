@@ -19,7 +19,7 @@ public class BabyBottle : MonoBehaviour {
 	void Update () {
 		if (!_isCreated) {
 			transform.position = new Vector3(11.1f, Random.Range (-3.3f, 3.3f)); //Create random position
-			rigidbody2D.AddForce(new Vector2(-150, 0)); //Add force so the meteor moves
+			rigidbody2D.AddForce(new Vector2(-2, 0)); //Add force so the meteor moves
 			_isCreated = true; //Now meteor is created
 		}
 		

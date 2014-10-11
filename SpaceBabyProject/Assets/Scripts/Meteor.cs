@@ -35,19 +35,16 @@ public class Meteor : MonoBehaviour {
 	{
 		if (!_isCreated) {
 			transform.position = new Vector3(11.1f, Random.Range (-3.2f, 3.2f)); //Create random position
-			rigidbody2D.AddForce(new Vector2(-100, 0)); //Add force so the meteor moves
+			rigidbody2D.AddForce(new Vector2(-2, 0)); //Add force so the meteor moves
 
 			_isCreated = true; //Now meteor is created
 		}
 
-		if (_isCreated) {
-		}
-			
-
+		/*
 		if (Input.GetKey(KeyCode.A))
 		{
 			transform.position = new Vector3(11.1f, Random.Range (-3.2f, 3.2f)); //Create random position
-		}
+		}*/
 	}
 }
 
