@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BabyBottle.cs" />
      <Compile Include="Assets\Scripts\BottleCounter.cs" />
+     <Compile Include="Assets\Scripts\GlobalDelegator.cs" />
      <Compile Include="Assets\Scripts\Meteor.cs" />
      <Compile Include="Assets\Scripts\MovableObstacle.cs" />
      <Compile Include="Assets\Scripts\ParticleSortingLayerFix.cs" />

@@ -8,6 +8,7 @@ public class BabyBottle : MonoBehaviour {
 	private bool _isCreated = false;
 	private GameObject _bottleCounterObject;
 	private BottleCounter _bottleCounter;
+	private Vector2 _constantForceVector = new Vector2(-1.5f, 0.0f);
 
 	// Use this for initialization
 	void Start () {
@@ -19,20 +20,9 @@ public class BabyBottle : MonoBehaviour {
 	void Update () {
 		if (!_isCreated) {
 			transform.position = new Vector3(11.1f, Random.Range (-3.3f, 3.3f)); //Create random position
-			rigidbody2D.AddForce(new Vector2(-2, 0)); //Add force so the meteor moves
+			rigidbody2D.AddForce(_constantForceVector); //Add force so the meteor moves
 			_isCreated = true; //Now meteor is created
 		}
-		
-		if (_isCreated) {
-		}
-		
-		
-		if (Input.GetKey(KeyCode.A))
-		{
-			transform.position = new Vector3(11.1f, Random.Range (-3.2f, 3.2f)); //Create random position
-		}
-
-
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -40,6 +30,13 @@ public class BabyBottle : MonoBehaviour {
 		if (collision.gameObject.tag == "PlayerContact")
 		{
 			_bottleCounter.BottlePickedUp();
+			rigidbody2D.velocity = Vector2.zero;
+			_isCreated = false;
+		}
+		else if (collision.gameObject.tag == "FrameEdgeCollider")
+		{
+			//Player looses a life
+			rigidbody2D.velocity = Vector2.zero;
 			_isCreated = false;
 		}
 	}
