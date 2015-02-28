@@ -3,43 +3,44 @@ using System.Collections;
 
 public class MovableObstacle : MonoBehaviour {
 
-	private bool _isCreated = false;
-	private Vector2 _constantVector = new Vector2 (-1.5f, 0.0f);
+    public bool isActive = false;
+    public Vector2 creationRange = new Vector2(3.2f, -3.2f);
+    public Vector2 constantForce = new Vector2(-1.5f, 0.0f);
 
-	public float speed = 0.2f;
-	public int objectId;
+    private GameManager gameManager;
 
 	// Use this for initialization
 	void Start()
 	{
-		Physics.IgnoreLayerCollision(gameObject.layer, 11);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		Physics.IgnoreLayerCollision(gameObject.layer, 11); //Ignore collision with MovableObstacle
 	}
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		if (!_isCreated)
+        if (!isActive)
 		{
-			transform.position = new Vector3(11.1f, Random.Range(-3.2f, 3.2f)); //Create random position
-			rigidbody2D.AddForce(_constantVector); //Add force so the obstacle moves
-			_isCreated = true; //Now movable obstacle is created
+            transform.position = new Vector3(11.1f, Random.Range(creationRange.y, creationRange.x)); //Create random position
+            rigidbody2D.AddForce(constantForce); //Add force so the obstacle moves
+            isActive = true; //Now movable obstacle is active
 		}
 	}
 
-	
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "PlayerContact")
 		{
 			//Player looses a life
 			rigidbody2D.velocity = Vector2.zero;
-			_isCreated = false;
+            isActive = false;
+            gameManager.ObsticleCollide();
 		}
-		else if (collision.gameObject.tag == "FrameEdgeCollider")
+        else if (collision.gameObject.tag == "OutsideBoundary")
 		{
-			//Player looses a life
+			//Movable obstacle is out of range
 			rigidbody2D.velocity = Vector2.zero;
-			_isCreated = false;
+            isActive = false;
 		}
 	}
 }
