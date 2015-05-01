@@ -5,7 +5,7 @@ public class BabyBottle : MonoBehaviour {
 
     public bool isActive = false;
     public Vector2 creationRange = new Vector2(3.2f, -3.2f);
-    public Vector2 constantForce = new Vector2(-1.5f, 0.0f);
+    public Vector2 constantForceVector = new Vector2(-1.5f, 0.0f);
 
     private GameManager gameManager;
 
@@ -19,7 +19,7 @@ public class BabyBottle : MonoBehaviour {
         if (!isActive)
         {
             transform.position = new Vector3(11.1f, Random.Range(creationRange.y, creationRange.x)); //Create random position
-            rigidbody2D.AddForce(constantForce); //Add force so the obstacle moves
+			GetComponent<Rigidbody2D>().AddForce(constantForceVector); //Add force so the obstacle moves
             isActive = true; //Now movable obstacle is active
         }
 	}
@@ -30,13 +30,13 @@ public class BabyBottle : MonoBehaviour {
 		{
 			//_bottleCounter.BottlePickedUp();
             gameManager.BottleCollected();
-			rigidbody2D.velocity = Vector2.zero;
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             isActive = false;
 		}
         else if (collision.gameObject.tag == "OutsideBoundary")
         {
             //Movable obstacle is out of range
-            rigidbody2D.velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             isActive = false;
         }
 	}
